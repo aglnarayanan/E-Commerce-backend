@@ -8,13 +8,10 @@ const userRoutes = require('./routes/userRoutes');
 const productRoutes = require('./routes/productRoutes');
 const cartRoutes = require('./routes/cartRoutes');
 const orderRoutes = require('./routes/orderRoutes');
+const uploadRoutes = require('./routes/uploadRoutes');
+const feedbackRoutes = require('./routes/feedback'); // ✅ Use consistent name
 
 const app = express();
-const contactRoutes = require('./routes/contactRoutes');
-const uploadRoutes = require('./routes/uploadRoutes');
-app.use('/api/upload', uploadRoutes);
-
-app.use('/api/contact', contactRoutes);
 
 app.use(cors());
 app.use(express.json());
@@ -29,6 +26,8 @@ app.use('/api/users', userRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/cart', cartRoutes);
 app.use('/api/orders', orderRoutes);
+app.use('/api/upload', uploadRoutes);
+app.use('/api/contact', feedbackRoutes); // ✅ No duplicate!
 
 app.get('/', (req, res) => {
   res.send('🚀 API is running...');
